@@ -24,8 +24,8 @@ public class CachedThreadpoolExecutorApp {
             return "Hello";
         });
 
-        Assert.assertEquals(2,service.getActiveCount());
-        Assert.assertEquals(1,service.getQueue().size());
+        Assert.assertEquals(3,service.getActiveCount());
+        Assert.assertEquals(0,service.getQueue().size());
 
         System.out.println(service.getActiveCount());
         System.out.println(service.getQueue().size());
