@@ -1,4 +1,4 @@
-package com.training.zore.lock.reentrantapp1;
+package com.training.zore.lock.app1;
 
 
 import java.util.concurrent.ExecutorService;
@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class ReentrantLockApp {
+public class BasicLockApp {
     private static Object lock = new Object();
 
     private int criticalSection() {
@@ -36,9 +36,9 @@ public class ReentrantLockApp {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(10);
-        ReentrantLockApp lockApp = new ReentrantLockApp();
+        BasicLockApp lockApp = new BasicLockApp();
 
-        IntStream.range(0, 1000).forEach(x -> service.submit(new ReentrantLockApp()::criticalSectionWithoutSynchronized));
+        IntStream.range(0, 1000).forEach(x -> service.submit(new BasicLockApp()::criticalSectionWithoutSynchronized));
         service.awaitTermination(10, TimeUnit.SECONDS);
     }
 }
