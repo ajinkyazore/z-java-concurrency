@@ -1,14 +1,13 @@
 package com.training.zore.threadpools.app2;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.List;
+import java.util.concurrent.*;
 
 import org.junit.Assert;
 import org.junit.Assert.*;
 
 public class FixedThreadpoolExecutorApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 
         service.submit(() -> {
@@ -31,6 +30,11 @@ public class FixedThreadpoolExecutorApp {
 
         System.out.println(service.getActiveCount());
         System.out.println(service.getQueue().size());
+
+        service.awaitTermination(500, TimeUnit.MILLISECONDS);
+
+        List<Runnable> unfinishedTasks = service.shutdownNow();
+
         System.out.println("Done");
     }
 }
