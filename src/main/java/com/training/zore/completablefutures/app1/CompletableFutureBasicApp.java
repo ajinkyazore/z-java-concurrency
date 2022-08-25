@@ -69,6 +69,4 @@ public class CompletableFutureBasicApp {
         CompletableFuture completableFuture = CompletableFuture.supplyAsync(() -> "Hello World");
         Assert.assertEquals("Hello World", completableFuture.get());
     }
-
-
 }
